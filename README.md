@@ -56,7 +56,7 @@ Output files are:
 * `lake-model-temp.nc`, `lake-model-d2H.nc`, `lake-model-d18O.nc`: Daily average profiles of water temperature, water $\delta$<sup>2</sup>H values, and water $\delta$<sup>18</sup>O values. Column #s are lake layers.
 
 ### (5) Calibration
-An example Jupyter notebook `example-lake-psm-calibration.ipynb` demonstrates how a user might evaluate model performance against water temperature and water isotope profile observations using root-mean-square error and visualize results with scatterplots, timeseries, and heatmaps.
+In the `calibration` folder, an example Jupyter notebook `example-lake-psm-calibration.ipynb` demonstrates how a user might evaluate model performance against water temperature and water isotope profile observations using root-mean-square error and visualize results with scatterplots, timeseries, and heatmaps.
 ___
 
 ## References
