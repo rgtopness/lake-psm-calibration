@@ -2,7 +2,7 @@
 
 Lake proxy system models (PSMs) are tools for mechanistically interpreting paleoclimate proxy data from lake sediments. The first step in using the PSM is calibrating the Environment submodel (lake model). This framework in Python walks through running and calibrating the Environment submodel of the PRYSM v2.0 framework (Dee et al., 2018).
 
-The lake model is based on Hostetler & Bartlein (1990), with adaptions from Morrill et al. (2019) and Topness et al. (in prep). For a complete description of the model, see Topness et al. (in prep).
+The lake model is based on Hostetler & Bartlein (1990), with adaptions from Morrill et al. (2019)/and Topness et al. (in prep). For a complete description of the model, see Topness et al. (in prep).
 
 ## Highlights:
 * :grey_question: **Uncertain parameters**: Test several model parameter combinations using Latin Hypercube sampling.
@@ -67,3 +67,5 @@ Hostetler, S. W. and Bartlein, P. J.: Simulation of lake evaporation with applic
 Morrill, C., Meador, E., Livneh, B., Liefert, D. T., and Shuman, B. N.: Quantitative model-data comparison of mid-Holocene lake-level change in the central Rocky Mountains, Clim. Dyn., 53, 1077–1094, https://doi.org/10.1007/s00382-019-04633-3, 2019.  
 
 Topness, R. G., Thomas, E. K., Fendrock, M., and Otiniano, G. A.: Calibration guidelines and a runoff-isotope module for lake proxy system modeling (PRYSM v2.0), Geoscientific Model Development, in prep.
+
+https://github.com/carriemorrill/lake-model/tree/lake-model-isotopes
