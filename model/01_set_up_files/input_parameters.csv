@@ -1,0 +1,17 @@
+param_name,min_value,max_value
+cdrn,1.00E-03,2.50E-03
+eta,0.1,1
+alb_snow,0.7,0.9
+alb_slush,0.4,0.7
+d18Oa,-30,-10
+f,0,1
+melt_ratio,0.05,1
+rsm_ratio,0.05,1
+p,0,100
+s,0,1
+thaw_threshold,0,7
+freeze_threshold,0,7
+rp_ratio_freeze,0,1
+rp_ratio_cold,0,1
+rp_ratio_mild,0,1
+rp_ratio_warm,0,1
