@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19898086.svg)](https://doi.org/10.5281/zenodo.19898086)
+
 # Lake proxy system model calibration framework <br> (PRYSM v2.0)
 
 Lake proxy system models (PSMs) are tools for mechanistically interpreting paleoclimate proxy data from lake sediments. The first step in using the PSM is calibrating the Environment submodel (lake model). This framework in Python walks through running and calibrating the Environment submodel of the PRYSM v2.0 framework (Dee et al., 2018).
