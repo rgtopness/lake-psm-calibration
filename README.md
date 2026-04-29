@@ -5,21 +5,21 @@ Lake proxy system models (PSMs) are tools for mechanistically interpreting paleo
 The lake model is based on Hostetler & Bartlein (1990), with adaptions from Morrill et al. (2019) and Topness et al. (in prep). For a complete description of the model, see Topness et al. (in prep).
 
 ## Highlights:
-* :grey_question: **Uncertain parameters**: Test several model parameter combinations using Latin Hypercube sampling.
+* :grey_question: **Uncertain parameters**: Test different model parameter combinations using Latin Hypercube sampling.
   
 * :twisted_rightwards_arrows: **Parallel processing**: Models are run in parallel (default is 5 models run simulaneously), speeding up run times.
   
-* :droplet: **Runoff-isotope module**: A runoff module that can be adapted to any lake is integrated into this framework to provide forcings for lake water and isotope balance.
+* :droplet: **Simulate water isotopes**: A runoff-isotope module that can be adapted to any lake is integrated into this framework to provide forcings for lake water and isotope balance.
   
 * :white_check_mark: **Calibration**: Example notebooks walk through comparison of model outputs with observations.
 ___
 ## How to use this code: 
-### (1) Complete model set-up files located in the `01_set_up_files` folder
+### (1) Edit the model set-up files located in the `01_set_up_files` folder
 * `lake.inc.save`: Defines parameters and sets initial conditions. Edit values in this file that you would like to stay constant throughout your simulations (e.g. lake area by depth from top to bottom, maximum depth, latitude and longtitude, etc.). Descriptions of parameters are commented in the example file in this repository. The name of this file *must* be `lake.inc.save`.
   
-* `input_parameters.csv`: Enter parameter names and their range of values (min and max) you wish to test. Parameters not included in this file will stay constant for every simulation. Detailed descriptions of parameters can be found in the `documents` folder and Topness et al. (in prep). The name of this file *must* be `input_parameters.csv`.
+* `input_parameters.csv`: Enter parameter names and their range of values (min and max) you wish to test. Parameters not included in this file will stay constant for every simulation at their values defined in `lake.inc.save`. Detailed descriptions of parameters can be found in the `documents` folder and Topness et al. (in prep). The name of this file *must* be `input_parameters.csv`.
   
-* Meteorological input file: Model forcing, either from observations, reanalysis data, or climate model output. Must be a .txt file but file name does not matter. See `01_set_up_files` for an example meterological input file on a daily timestep. File columns should be:
+* Meteorological input file: Model forcing, either from observations, reanalysis data, or climate model output. Must be a .txt file but file name does not matter. See `01_set_up_files` for an example meterological input file on a daily timestep. File columns should be in the following order:
 
 | Variable | Units | 
 | ---------- | ---------- |
@@ -38,7 +38,7 @@ ___
 ```
 python ./02_create_parameter_sets.py
 ```
-> :information_source: Note: You will be asked if you want to generate a new, user-defined number of parameter sets or use an existing .csv file (i.e., the specific parameter sets that led to the best model performance against observations).
+> :information_source: Note: You will be asked if you want to generate a new, user-defined number of parameter sets or use an existing .csv file (i.e., the specific parameter sets that resulted in the best model performance against observations).
 
 ### (3) Run the `03_run_models.py` Python script. This will run the models and save outputs in the `output` folder. 
 ```
@@ -53,7 +53,7 @@ Output files are:
   
 * `lake-model-met.nc `: Meteorological input files with added columns for runoff amount (mm), precip $\delta$<sup>2</sup>H (per mil), runoff $\delta$<sup>2</sup>H (per mil), precip $\delta$<sup>18</sup>O (per mil), runoff $\delta$<sup>18</sup>O (per mil), accumulated snowfall (mm), accumulation $\delta$<sup>2</sup>H (per mil), accumulated $\delta$<sup>18</sup>O (per mil).
   
-* `lake-model-temp.nc`, `lake-model-d2H.nc`, `lake-model-d18O.nc`: Daily average profiles of water temperature, water $\delta$<sup>2</sup>H values, and water $\delta$<sup>18</sup>O values. Column #s are lake layers.
+* `lake-model-temp.nc`, `lake-model-d2H.nc`, `lake-model-d18O.nc`: Daily average profiles of water temperature, water $\delta$<sup>2</sup>H values, and water <br> $\delta$<sup>18</sup>O values. Column #s are lake layers.
 
 ### (5) Calibration
 In the `calibration` folder, an example Jupyter notebook `example-lake-psm-calibration.ipynb` demonstrates how a user might evaluate model performance against water temperature and water isotope profile observations using root-mean-square error and visualize results with scatterplots, timeseries, and heatmaps.
