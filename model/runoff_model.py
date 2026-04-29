@@ -43,6 +43,9 @@ def calculate_runoff(params, met):
     rp_ratio_cold = params['rp_ratio_cold']
     rp_ratio_mild = params['rp_ratio_mild']
     rp_ratio_warm = params['rp_ratio_warm']
+    glacier_flux = params['glacier_flux']
+    #glacier_2H = params['glacier_2H']
+    #glacier_18O = params['glacier_18O']
 
     # Changing to NumPy because then everything matches for calculations (deprecation error)
     M_tp = met['TP'].to_numpy()
@@ -80,7 +83,7 @@ def calculate_runoff(params, met):
 
     #rsm_ratio = 0.9  # fraction of snowmelt converted to runoff - ie. how much melted snow goes into the lake/turns into runoff
 
-    glacier_flux = 0.  # mm runoff per ha basin area; set to 0 if no glacier in catchment
+    #glacier_flux = 0.  # mm runoff per ha basin area; set to 0 if no glacier in catchment
 
     #p = 6.  # period for wma calculation; 0 if no smoothing
     #s = 2.  # sigma for wma calculation
