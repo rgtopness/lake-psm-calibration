@@ -43,7 +43,14 @@ def calculate_runoff(params, met):
     rp_ratio_cold = params['rp_ratio_cold']
     rp_ratio_mild = params['rp_ratio_mild']
     rp_ratio_warm = params['rp_ratio_warm']
-    glacier_flux = params['glacier_flux']
+
+    if 'glacier_flux' in params: 
+        glacier_flux = params['glacier_flux']
+    
+    else: 
+        glacier_flux = 0. # Set glacier flux to zero if not testing this parameter in LHS
+
+    # Uncomment to test different values for glacier isotopes
     #glacier_2H = params['glacier_2H']
     #glacier_18O = params['glacier_18O']
 
@@ -89,10 +96,10 @@ def calculate_runoff(params, met):
     #s = 2.  # sigma for wma calculation
 
     #thaw_threshold = 3 # set threshold for number of days above freezing required to allow runoff
-    thaw_threshold = round(thaw_threshold)
+    thaw_threshold = round(thaw_threshold) # Round to whole days
 
     #freeze_threshold = 2 # set threshold for number of days above freezing required to stop runoff
-    freeze_threshold = round(freeze_threshold)
+    freeze_threshold = round(freeze_threshold) # Round to whole days
 
     glacier_2H = min(met['d2HP'])  # glacier isotopes default to minimum monthly precip values from met-input
     glacier_18O = min(met['d18OP'])
@@ -104,9 +111,6 @@ def calculate_runoff(params, met):
     #rp_ratio_warm = 0.1 # Warm temperatures (T > 20°C)
 
     # Temperature thresholds can be edited in the function a few blocks below, if desired #
-
-    # Additional met file parameters to scale
-    #met['WIND'] = met['WIND'] * wind_scale  # Scale down wind speed in the meterological input file
 
     # =============================================================================
     # =========================== Calculate runoff ================================
