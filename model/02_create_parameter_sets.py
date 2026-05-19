@@ -98,6 +98,9 @@ def main(n_it = None, has_params = None, my_params_filename = None, batch_size =
                 return
 
             sample = read_csv(input_params_path)
+            if 'temp_rmse' in sample.columns:
+                # Remove extra columns from the df, if they exist
+                sample = sample.drop(columns = ['temp_rmse', 'temp_bias', 'd2H_rmse', 'd2H_bias', 'd18O_rmse', 'd18O_bias'])
             variables = sample.columns.to_list()
             n_it = len(sample)
         
