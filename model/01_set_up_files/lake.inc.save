@@ -1,5 +1,5 @@
 !#######################################################################
-!     			Include file for BEAR LAKE
+!     		Include file for BEAR LAKE / MONTHLY TIMESTEP
 !#######################################################################
 
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -40,7 +40,7 @@
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
       
       character(30) :: datafile='met-input.txt'    ! name of input file
-      parameter (readdt = 60.*60.*24.)    ! frequency of input reads [seconds]
+      parameter (readdt = 60.*60.*24.*30.)    ! frequency of input reads [seconds]
 
       parameter (z_screen = 2.0)          ! height of temperature and humidity inputs [meters]
       parameter (u_screen = 10.0)         ! height of wind input [meters]	  
