@@ -4,9 +4,10 @@
 # iteratively as runoff parameters are assigned through the 
 # Latin Hypercube Sampling framework 
 
-# Last updated: Rebecca G. Topness 20250522
-# Name: 'Model, Runoff Model'
+# Last updated: Rebecca G. Topness 20260519
+# Name: 'Monthly Model'
 
+## THIS IS FOR INPUT FILES ON A MONTHLY TIMESTEP ##
 
 # Packages
 import warnings
@@ -53,7 +54,31 @@ def calculate_runoff(params, met):
     # Uncomment to test different values for glacier isotopes
     #glacier_2H = params['glacier_2H']
     #glacier_18O = params['glacier_18O']
+    
+    ## EDIT FROM ORIGINAL RUNOFF MODEL ##
+    # Convert monthly inputs to daily (each month's value is copied over 30 days 
+    # in each month)
 
+    rows = []
+    for _, row in met.iterrows():
+        ndays = 30 # Each month is made up of 30 days
+
+        for day in range(1, ndays+1):
+            new = row.copy()
+            new["DAY"] = day
+            rows.append(new)
+
+    # Make the new DAILY dataframe
+    met_daily = DataFrame(rows)
+    
+    # Ensure columns are in the correct order 
+    met_daily = met_daily[["YEAR", "MONTH", "DAY", "T2M", "D2M", "WIND", "SSRD", "STRD", "SP", "TP", "d18OP", "d2HP"]]
+
+    # TP is now daily amounts so divide by 30 days in each month
+    met_daily['TP'] = met_daily['TP'] / 30
+   
+   ## END OF EDIT FROM ORIGINAL MODEL ##
+   
     # Changing to NumPy because then everything matches for calculations (deprecation error)
     M_tp = met['TP'].to_numpy()
     M_T2M = met['T2M'].to_numpy()
@@ -326,5 +351,25 @@ def calculate_runoff(params, met):
     met['ACC'] = M_acc
     met['d18OACC'] = M_acc_d18O
     met['d2HACC'] = M_acc_d2H
+
+    ## EDIT TO ORIGINAL RUNOFF MODEL ## 
+    # Put variables back on a monthly timestep 
+
+    # Take sums of accumulation variables over each month
+    sum_vars = ["TP", "RUNOFF", "ACC"]
+    # Take means of other variables (no change from original monthly met file bc that's what we started with)
+    mean_vars = ["T2M", "RH", "WIND", "SSRD", "STRD", "SP", "d18OP", "d18OR", "d2HP", "d2HR", "ACC", "d18OACC", "d2HACC"]
+
+    agg_dict = {var: "mean" for var in mean_vars}
+    agg_dict.update({var: "sum" for var in sum_vars}) # Sums get us back to monthly totals
+
+    # Add back the DAY column, where the day on the monthly input frequency is always 1
+    met["DAY"] = 1
+
+    # Make sure again that all columns are in the correct order 
+    column_order = ["YEAR", "MONTH", "DAY", "T2M", "D2M", "WIND", "SSRD", "STRD", "SP", "TP", "RUNOFF", "d18OP",	"d18OR", "d2HP", "d2HR", "ACC", "d18OACC", "d2HACC"]
+    met = met.reindex(columns=column_order)
+    
+    ## END OF EDIT TO ORIGINAL RUNOFF MODEL ##
 
     return met
