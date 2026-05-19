@@ -48,9 +48,9 @@
       parameter (bndry_flag = .false.)    ! is explicit boundary layer computation needed (i.e., input is sigma level)?
       parameter (sigma = 0.96)            ! sigma level when boundary flag is true [unitless]
       parameter (K_flag = .true.)        ! is temperature input in degrees Kelvin?
-      parameter (rh_flag = .false.)        ! is humidity input in relative humidity?
+      parameter (rh_flag = .true.)        ! is humidity input in relative humidity?
       parameter (q_flag = .false.)        ! is humidity input in specific humidity?
-      parameter (dp_flag = .true.)       ! is humidity input in dewpoint?
+      parameter (dp_flag = .false.)       ! is humidity input in dewpoint?
 
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 !     Simulation settings **CHANGE THESE**
